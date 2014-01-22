@@ -1,0 +1,15 @@
+<html>
+<head>
+	<title>Class TTT</title>
+		<link rel="stylesheet" type="text/css" href="main2.css">
+		<script type="text/javascript" src="main2.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
+</head>
+<body ng-app="" ng-controller="TicTacCtrl">
+	<div ng-class="{cell:true, clear:$index % 3 == 0}" 
+		 ng-repeat="cell in cells track by $index">{{cell}}</div>
+
+
+
+</body>
+</html>

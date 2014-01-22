@@ -1,0 +1,3 @@
+function TicTacCtrl($scope) {
+	cells = [",",",",",",",",","]
+}

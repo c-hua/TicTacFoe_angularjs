@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html x-ng-app>
+	<head>
+		<title>Class TTT</title>
+		<link rel="stylesheet" type="text/css" href="main.css">
+		<script type="text/javascript" src="main.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
+		<meta charset="UTF-8">
+		<link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
+
+	</head>
+	<body>
+		<header>
+			<div> Tic Tac <span>Toe</span></div>
+		</header>
+		<div id="container" ng-controller="boardCtrl">
+			<div class="board">
+				<div id="cell{{$index}}" x-ng-repeat="box in boxes track by $index" 
+				x-ng-class="{cell:true, clear: $index % 3 == 0}" x-ng-click="takeTurn($index)">{{box}}
+				<!-- <img src="images/{{box}}.png" style="width: 100px; height: 100px;" /> -->
+				</div>
+
+				<div class="message">
+					{{winMsg}} 
+					<button id="button" x-ng-click="resetGame(i)">Reset</button>
+				</div>
+				<div class="message">
+					 {{tieMsg}}
+					<button id="button" x-ng-click="resetGame(i)">Reset</button>
+				</div>
+			</div>
+			<div id="player1" class="player">Player 1<br /><span id="score_x"></span></div>
+			<div id="player2" class="player">Player 2<br /><span id="score_o"></span></div>
+		</div>
+		
+
+
+	</body>
+</html>
