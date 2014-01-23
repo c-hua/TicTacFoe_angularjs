@@ -22,15 +22,15 @@
 
 				<div class="message">
 					{{winMsg}} 
-					<button id="button" x-ng-click="resetGame(i)">Reset</button>
+					<button id="button" x-ng-click="resetGame()">Reset</button>
 				</div>
 				<div class="message">
 					 {{tieMsg}}
-					<button id="button" x-ng-click="resetGame(i)">Reset</button>
+					<button id="button" x-ng-click="resetGame()">Reset</button>
 				</div>
 			</div>
-			<div id="player1" class="player">Player 1<br /><span id="score_x"></span></div>
-			<div id="player2" class="player">Player 2<br /><span id="score_o"></span></div>
+			<div id="player1" class="player"><span class="playertext">Player 1</span><br /><span id="score_x">{{homeScore}} </span></div>
+			<div id="player2" class="player"><span  class="playertext">Player 2</span><br /><span id="score_o">{{awayScore}}</span></div>
 		</div>
 		
 

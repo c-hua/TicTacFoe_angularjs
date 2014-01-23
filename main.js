@@ -1,27 +1,32 @@
+
 function boardCtrl ($scope) {
 	$scope.boxes = ["","","","","","","","",""]
 	$scope.xTurn = 'x';
-	$scope.turnCounter = 1;
-	var win = false;
+	$scope.turnCounter = 0;
+	$scope.win = false;
+	$scope.homeScore = 0;
+	$scope.awayScore = 0;
 	
+	
+	$scope.resetGame= function () {
 
+		$scope.boxes = [
+			"","","",
+			"","","",
+			"","",""
+			];
+		$scope.winMsg = "";
+		$scope.turnCounter = 0;
+		$scope.win = false;
 
-		$scope.resetGame= function (i) {
+		document.getElementsByClassName('message')[0].style.display="none";
 
-			$scope.boxes = [
-				"","","",
-				"","","",
-				"","",""
-				];
-			$scope.winMsg = "";
-			
-			document.getElementsByClassName('message')[0].style.display="none";
+	};
 
-		};
 		
 
-		$scope.takeTurn = function (i) {
-			if ($scope.boxes[i] == "") {
+	$scope.takeTurn = function (i) {
+		if ($scope.boxes[i] == "") {
 				$scope.boxes[i] = $scope.xTurn;
 
 				if ($scope.boxes[i] == "x") {
@@ -29,20 +34,20 @@ function boardCtrl ($scope) {
 				} else {
 					$scope.xTurn = "x";
 				};
+			$scope.turnCounter++;	
 			} 
-			else {
+		else {
 				alert('jackass!')
 			};
-			if ($scope.turnCounter >= 5) {
+		if ($scope.turnCounter >= 5) {
 			 	$scope.checkWin();
 			};
-			$scope.turnCounter++;
-
+		
 			
-		};
+	};
 
-		$scope.checkWin = function() {
-			$scope.winAry = [
+	$scope.checkWin = function() {
+		$scope.winAry = [
 				[0,1,2],
 				[3,4,5],
 				[6,7,8],
@@ -60,15 +65,24 @@ function boardCtrl ($scope) {
 
 					document.getElementsByClassName('message')[0].style.display="block";
 					$scope.winMsg="Winner!";
-					document.getElementById('score_'+ whosTurnIsIt).innerHTML += "I";
-					win = true;
-				}								 	
+					if(whosTurnIsIt=="x"){
+						$scope.homeScore++;
+					}
+					else if(whosTurnIsIt=="o"){
+						$scope.awayScore++;
+					}	
+					$scope.win = true;			
+					
+				};
+					
 			};
-			// if (turnCounter==9 && turn==false) {
-			// 	document.getElementsByClassName('message')[0].style.display="block";
-			// 	$scope.TieMsg="Tied Game!";
-			// 	};		
+		if($scope.turnCounter == 9 && $scope.win==false) {
+			document.getElementsByClassName('message')[0].style.display="block";
+
+			$scope.tieMsg="Tied!";			
 		};
+			
+	};
 
 };
 
