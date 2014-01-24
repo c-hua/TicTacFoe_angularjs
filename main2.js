@@ -105,8 +105,7 @@ $scope.checkWin = function() {
 			};
 		if($scope.obj.turnCounter == 9 && $scope.obj.win==false) {
 			document.getElementsByClassName('message')[0].style.display="block";
-
-			$scope.obj.tieMsg="Tied!";	
+			// $scope.obj.tieMsg="Tied!";	
 			$scope.obj.$save();		
 		};
 			
