@@ -1,5 +1,6 @@
 var ticTacRef;
 var IDs;
+var player;
 
 
 angular.module("TicTac", ["firebase"])  //
@@ -28,7 +29,10 @@ angular.module("TicTac", ["firebase"])  //
 
 	});
 
-		$scope.resetGame= function () {
+
+
+
+	$scope.resetGame= function () {
 
 		$scope.obj.boxes = [
 			"","","",
@@ -43,9 +47,33 @@ angular.module("TicTac", ["firebase"])  //
 
 	};	
 
+	function isXtaken () {
+		if($scope.obj.boxes.indexOf("x") == -1) {
+			return true; 
+		}
+		else {
+			return false;
+		}
+	}
+
+	function iAm() {
+		if(player=="x" && $scope.obj.xTurn=="x"){
+			return true;
+		}
+		else if(player != "x" && $scope.obj.xTurn =="o") {
+			return true;
+		}
+		else {
+			false;
+		}
+	}
+
 	$scope.takeTurn = function (i) {
-		if ($scope.obj.boxes[i] == "") {
+		if ($scope.obj.boxes[i] == "" && isXtaken() || iAm()) {
 				$scope.obj.boxes[i] = $scope.obj.xTurn;
+				if( $scope.obj.xTurn=="x"){
+					player = "x";
+				}
 
 				if ($scope.obj.boxes[i] == "x") {
 					$scope.obj.xTurn = "o";
@@ -58,7 +86,7 @@ angular.module("TicTac", ["firebase"])  //
 			$scope.obj.$save();	
 			} 
 		else {
-				alert('jackass!')
+				alert('Not your turn!')
 			};
 		if ($scope.obj.turnCounter >= 5) {
 			 	$scope.checkWin();
