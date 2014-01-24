@@ -1,15 +1,41 @@
-<html>
-<head>
-	<title>Class TTT</title>
-		<link rel="stylesheet" type="text/css" href="main2.css">
-		<script type="text/javascript" src="main2.js"></script>
+<!DOCTYPE html>
+<html x-ng-app="TicTac">
+	<head>
+		<title>Class TTT</title>
+		<link rel="stylesheet" type="text/css" href="main.css">
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
-</head>
-<body ng-app="" ng-controller="TicTacCtrl">
-	<div ng-class="{cell:true, clear:$index % 3 == 0}" 
-		 ng-repeat="cell in cells track by $index">{{cell}}</div>
+		<!-- <meta charset="UTF-8"> -->
+		<script src="https://cdn.firebase.com/v0/firebase.js"></script>
+		<script src="https://cdn.firebase.com/libs/angularfire/0.6.0/angularfire.min.js"></script>
+		<link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
+		<script type="text/javascript" src="main2.js"></script>
+
+	</head>
+	<body>
+		<header>
+			<div> Tic Tac <span>Toe</span></div>
+		</header>
+		<div id="container" ng-controller="boardCtrl">
+			<div class="board">
+				<div id="cell{{$index}}" x-ng-repeat="box in obj.boxes track by $index" 
+				x-ng-class="{cell:true, clear: $index % 3 == 0}" x-ng-click="takeTurn($index)">{{box}}
+				<!-- <img src="images/{{box}}.png" style="width: 100px; height: 100px;" /> -->
+				</div>
+
+				<div class="message">
+					{{obj.winMsg}} 
+					<button id="button" x-ng-click="resetGame()">Reset</button>
+				</div>
+				<div class="message">
+					 {{obj.tieMsg}}
+					<button id="button" x-ng-click="resetGame()">Reset</button>
+				</div>
+			</div>
+			<div id="player1" class="player"><span class="playertext">Player 1</span><br /><span id="score_x">{{obj.homeScore}} </span></div>
+			<div id="player2" class="player"><span  class="playertext">Player 2</span><br /><span id="score_o">{{obj.awayScore}}</span></div>
+		</div>
+		
 
 
-
-</body>
+	</body>
 </html>

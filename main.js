@@ -1,3 +1,10 @@
+var ticTacRef;
+var IDs;
+xTurn="x"
+turnCounter= 0;
+winMsg = "";
+homeScore = 0;
+awayScore = 0;
 
 function boardCtrl ($scope) {
 	$scope.boxes = ["","","","","","","","",""]
@@ -46,43 +53,43 @@ function boardCtrl ($scope) {
 			
 	};
 
-	$scope.checkWin = function() {
-		$scope.winAry = [
-				[0,1,2],
-				[3,4,5],
-				[6,7,8],
-				[0,3,6],
-				[1,4,7],
-				[2,5,8],
-				[0,4,8],
-				[2,4,6]
-			]
+	// $scope.checkWin = function() {
+	// 	$scope.winAry = [
+	// 			[0,1,2],
+	// 			[3,4,5],
+	// 			[6,7,8],
+	// 			[0,3,6],
+	// 			[1,4,7],
+	// 			[2,5,8],
+	// 			[0,4,8],
+	// 			[2,4,6]
+	// 		]
 
-			for(i=0; i<$scope.winAry.length; i++) {
-				winCombo = $scope.winAry[i];
-				var whosTurnIsIt = $scope.boxes[winCombo[0]];
-				if($scope.boxes[winCombo[0]]==$scope.boxes[winCombo[1]] && $scope.boxes[winCombo[1]] == $scope.boxes[winCombo[2]] && $scope.boxes[winCombo[0]] !=="") {
+	// 		for(i=0; i<$scope.winAry.length; i++) {
+	// 			winCombo = $scope.winAry[i];
+	// 			var whosTurnIsIt = $scope.boxes[winCombo[0]];
+	// 			if($scope.boxes[winCombo[0]]==$scope.boxes[winCombo[1]] && $scope.boxes[winCombo[1]] == $scope.boxes[winCombo[2]] && $scope.boxes[winCombo[0]] !=="") {
 
-					document.getElementsByClassName('message')[0].style.display="block";
-					$scope.winMsg="Winner!";
-					if(whosTurnIsIt=="x"){
-						$scope.homeScore++;
-					}
-					else if(whosTurnIsIt=="o"){
-						$scope.awayScore++;
-					}	
-					$scope.win = true;			
+	// 				document.getElementsByClassName('message')[0].style.display="block";
+	// 				$scope.winMsg="Winner!";
+	// 				if(whosTurnIsIt=="x"){
+	// 					$scope.homeScore++;
+	// 				}
+	// 				else if(whosTurnIsIt=="o"){
+	// 					$scope.awayScore++;
+	// 				}	
+	// 				$scope.win = true;			
 					
-				};
+	// 			};
 					
-			};
-		if($scope.turnCounter == 9 && $scope.win==false) {
-			document.getElementsByClassName('message')[0].style.display="block";
+	// 		};
+	// 	if($scope.turnCounter == 9 && $scope.win==false) {
+	// 		document.getElementsByClassName('message')[0].style.display="block";
 
-			$scope.tieMsg="Tied!";			
-		};
+	// 		$scope.tieMsg="Tied!";			
+	// 	};
 			
-	};
+	// };
 
 };
 
