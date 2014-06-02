@@ -1,39 +1,80 @@
 <!DOCTYPE html>
 <html x-ng-app>
 	<head>
-		<title>Class TTT</title>
-		<link rel="stylesheet" type="text/css" href="main.css">
+		<title>f l i p  t a c  f o e</title>
+		<link rel="stylesheet" type="text/css" href="main.css"> 
 		<script type="text/javascript" src="main.js"></script>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
 		<meta charset="UTF-8">
-		<link href='http://fonts.googleapis.com/css?family=Audiowide' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
 
+		<link href="css/hover.css" rel="stylesheet" media="all">
+		
+
+	
+
+	<!-- splash screen 
 	</head>
-	<body>
+	 <body ng-init="message">
+  <!-- inline styles ->
+  <div class="splash" ng-cloak="header">
+    <p>Loading</p>
+    <div class="message">
+					{{winMsg}} 
+					<button id="button" x-ng-click="resetGame()">R E S E T</button>
+				</div>
+  </div> 
+  
+</head>
+ <body x-ng-app="form" x-ng-init="form" x-ng-controller="boardCtrl">
+		<div id="start" x-ng-hide="form">
+			<img src="images/icon.png" />
+			<h2></h2>
+			<form x-ng-submit="makeBoard()">
+				# of players  <input type="text" size="2" x-ng-model="playerNumber" /><br /><br />
+				board size  <input type="text" size="2" x-ng-model="xsquared" /><br /><br />
+				<input type="submit" style="font-family: 'Dosis'; color: gray; background-color: #79BD8F; height: 50px; width: 175px; font-size: 20px; border-radius: 10px" value="Start!" />
+			</form>
+		</div> -->
+
+
 		<header>
-			<div> Tic Tac <span>Toe</span></div>
+			<div><span>•   </span> F L I P • <span> T A C </span> • F O E <span>   • </span></div>
 		</header>
+
+
+		
+
 		<div id="container" ng-controller="boardCtrl">
-			<div class="board">
-				<div id="cell{{$index}}" x-ng-repeat="box in boxes track by $index" 
+			<div id="start" ng-controller="boardCtrl" x-ng-hide="startMsg==false" > 
+				<p> BEGIN GAME </p>
+				<button id="button"  x-ng-click="startMsg()"> S T A R T </button>
+				</div>
+		<!--add a display none function to the player1 and player2 section, use ng class to call them all, and ng click to change display:none to display:visible-->
+				
+	
+			<div class="animated board"> {{obj.boxes}}
+				<div id="cell{{$index}}"  x-ng-repeat="box in boxes track by $index" 
 				x-ng-class="{cell:true, clear: $index % 3 == 0}" x-ng-click="takeTurn($index)">{{box}}
 				<!-- <img src="images/{{box}}.png" style="width: 100px; height: 100px;" /> -->
 				</div>
 
+			
+
 				<div class="message">
 					{{winMsg}} 
-					<button id="button" x-ng-click="resetGame()">Reset</button>
+					<button id="button" x-ng-click="resetGame()">R E S E T</button>
 				</div>
 				<div class="message">
 					 {{tieMsg}}
-					<button id="button" x-ng-click="resetGame()">Reset</button>
+					<button id="button" x-ng-click="resetGame()">R E S E T</button>
 				</div>
 			</div>
-			<div id="player1" class="player"><span class="playertext">Player 1</span><br /><span id="score_x">{{homeScore}} </span></div>
-			<div id="player2" class="player"><span  class="playertext">Player 2</span><br /><span id="score_o">{{awayScore}}</span></div>
-		</div>
-		
+			<div>
 
+			<div id="player1" class="player"   ><span class="playertext">P L A Y E R <br /><span >1 </span> </span><br /><span id="score_x">{{score_home}} </span></div>
+			<div id="player2" class="player" ><span  class="playertext">P L A Y E R <br /><span>2</span> <br /><span id="score_o">{{score_other}}</span></div>
+		
 
 	</body>
 </html>

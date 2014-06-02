@@ -1,19 +1,39 @@
-var ticTacRef;
-var IDs;
-xTurn="x"
-turnCounter= 0;
+var ticTacSource;
+var Ids;
 winMsg = "";
-homeScore = 0;
-awayScore = 0;
+invalidMsg = "";
+tieMsg = "";
+whosTurn="x"
+counter= 0;
+score_home = 0;
+score_other = 0;
 
+
+
+
+// declare variables 
 function boardCtrl ($scope) {
 	$scope.boxes = ["","","","","","","","",""]
-	$scope.xTurn = 'x';
-	$scope.turnCounter = 0;
+	$scope.whosTurn = 'x';
+	$scope.counter = 0;
+	$scope.score_home = 0;
+	$scope.score_other = 0;
 	$scope.win = false;
-	$scope.homeScore = 0;
-	$scope.awayScore = 0;
+	$scope.startMsg=false;
+
+// start message function
+	$scope.startMsg=function() {
+			$scope.startMsg = false
+		// if ($scope.startMsg = false) {
+			// console.log("startmsg")
+			// resetGame();
+			// $scope.startMsg=true;
+			// document.getElementsByClassName('message')[0].style.display="block";
+			// 		$scope.winMsg="start";
+		// }
+	}
 	
+// create board	
 	
 	$scope.resetGame= function () {
 
@@ -22,71 +42,80 @@ function boardCtrl ($scope) {
 			"","","",
 			"","",""
 			];
+
 		$scope.winMsg = "";
-		$scope.turnCounter = 0;
+		$scope.tieMsg = "";
+		$scope.counter = 0;
 		$scope.win = false;
+		$scope.startMsg=false;
+		
 
 		document.getElementsByClassName('message')[0].style.display="none";
 
 	};
 
-		
+// figure out whose turn it is...(X or O)	
 
 	$scope.takeTurn = function (i) {
 		if ($scope.boxes[i] == "") {
-				$scope.boxes[i] = $scope.xTurn;
+				$scope.boxes[i] = $scope.whosTurn;
 
 				if ($scope.boxes[i] == "x") {
-					$scope.xTurn = "o"
+					$scope.whosTurn = "o"
 				} else {
-					$scope.xTurn = "x";
+					$scope.whosTurn = "x";
 				};
-			$scope.turnCounter++;	
+			$scope.counter++;	
 			} 
 		else {
-				alert('jackass!')
+				document.getElementsByClassName('message')[0].style.display="block";
+					$scope.winMsg="I N V A L I D";
 			};
-		if ($scope.turnCounter >= 5) {
+		if ($scope.counter >= 5) {
 			 	$scope.checkWin();
 			};
 		
 			
 	};
 
+	// identify winning combos
 	$scope.checkWin = function() {
-		$scope.winAry = [
+		$scope.winningArray = [
 				[0,1,2],
-				[3,4,5],
-				[6,7,8],
-				[0,3,6],
 				[1,4,7],
 				[2,5,8],
 				[0,4,8],
+				[6,7,8],
+				[3,4,5],
+				[0,3,6],
 				[2,4,6]
 			]
-
-			for(i=0; i<$scope.winAry.length; i++) {
-				winCombo = $scope.winAry[i];
+		//post WINNER message
+			for(i=0; i<$scope.winningArray.length; i++) {
+				winCombo = $scope.winningArray[i];
 				var whosTurnIsIt = $scope.boxes[winCombo[0]];
 				if($scope.boxes[winCombo[0]]==$scope.boxes[winCombo[1]] && $scope.boxes[winCombo[1]] == $scope.boxes[winCombo[2]] && $scope.boxes[winCombo[0]] !=="") {
 
 					document.getElementsByClassName('message')[0].style.display="block";
-					$scope.winMsg="Winner!";
+					$scope.winMsg="W I N N E R !";
 					if(whosTurnIsIt=="x"){
-						$scope.homeScore++;
+						$scope.score_home++;
 					}
 					else if(whosTurnIsIt=="o"){
-						$scope.awayScore++;
+						$scope.score_other++;
 					}	
 					$scope.win = true;			
 					
 				};
 					
 			};
-		if($scope.turnCounter == 9 && $scope.win==false) {
+
+		// identify tie, post up message "CAT'S GAME"	
+		if($scope.counter == 9 && $scope.win===false) {
 			document.getElementsByClassName('message')[0].style.display="block";
 
-			$scope.tieMsg="Tied!";			
+			$scope.winMsg="T I E !";	
+
 		};
 			
 	};

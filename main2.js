@@ -6,7 +6,7 @@ var player;
 angular.module("TicTac", ["firebase"])  //
  .controller("boardCtrl", function($scope, $firebase){
  	
- 	ticTacRef = new Firebase("https://alex-tic-tac.firebaseio.com/");
+ 	ticTacRef = new Firebase("https://fliptacfoe.firebaseio.com/");
  	$scope.fbRoot = $firebase(ticTacRef);
 
  	// Wait until everything really is loaded
